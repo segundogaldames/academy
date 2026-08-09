@@ -7,8 +7,24 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+
+class UserController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            // Requerir autenticación para todo el controlador
+            'auth',
+
+            // Permiso para Ver la lista (index) y ver el detalle (show)
+            new Middleware('can:Leer usuarios', only: ['index']),
+
+            // Permiso para Ver el formulario de edición y Actualizar el rol
+            new Middleware('can:Editar usuarios', only: ['edit', 'update']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

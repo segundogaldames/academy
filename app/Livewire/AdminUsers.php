@@ -13,9 +13,9 @@ class AdminUsers extends Component
     public $search;
 
     public function updatingSearch()
-{
-    $this->resetPage(); // Trait WithPagination
-}
+    {
+        $this->resetPage(); // Trait WithPagination
+    }
 
     public function render()
     {

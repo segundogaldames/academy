@@ -28,26 +28,13 @@ class DatabaseSeeder extends Seeder
         Storage::disk('public')->makeDirectory('courses');
 
         $this->call([
-            UserSeeder::class,
-        ]);
-
-        $this->call([
+            PermissionSeeder::class, // 1º Crea los 11 permisos
+            RoleSeeder::class,       // 2º Crea Admin (con los 11) e Instructor (con los 4 de cursos)
+            UserSeeder::class,       // 3º Crea usuarios
             LevelSeeder::class,
-        ]);
-
-        $this->call([
             CategorySeeder::class,
-        ]);
-
-        $this->call([
             PriceSeeder::class,
-        ]);
-
-        $this->call([
             PlatformSeeder::class,
-        ]);
-
-        $this->call([
             CourseSeeder::class,
         ]);
     }

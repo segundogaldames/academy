@@ -4,12 +4,36 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller
+class RoleController extends Controller implements HasMiddleware
 {
+    /**
+     * Definir los middlewares que protegen las rutas resource.
+     */
+    public static function middleware(): array
+    {
+        return [
+            // Requerir autenticación para todo el controlador
+            'auth',
+
+            // Permiso para Ver la lista (index) y ver el detalle (show)
+            new Middleware('can:Leer roles', only: ['index', 'show']),
+
+            // Permiso para Ver el formulario de creación y Guardar el nuevo rol
+            new Middleware('can:Crear roles', only: ['create', 'store']),
+
+            // Permiso para Ver el formulario de edición y Actualizar el rol
+            new Middleware('can:Editar roles', only: ['edit', 'update']),
+
+            // Permiso para Eliminar el rol
+            new Middleware('can:Eliminar roles', only: ['destroy']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

@@ -9,10 +9,10 @@ use App\Models\Level;
 
 use Livewire\WithPagination;
 
-class CourseIndex extends Component
+class CoursesIndex extends Component
 {
     use WithPagination;
-    
+
     public $category_id;
     public $level_id;
 
@@ -20,12 +20,12 @@ class CourseIndex extends Component
     {
         $categories = Category::all();
         $levels = Level::all();
-        $courses = Course::where('status',3)->category($this->category_id)->level($this->level_id)->latest('id')->paginate(8);
-        return view('livewire.course-index', compact('courses','categories','levels'));
+        $courses = Course::where('status', 3)->category($this->category_id)->level($this->level_id)->latest('id')->paginate(8);
+        return view('livewire.courses-index', compact('courses', 'categories', 'levels'));
     }
 
     public function resetFilters()
     {
-        $this->reset('category_id','level_id');
+        $this->reset('category_id', 'level_id');
     }
 }
