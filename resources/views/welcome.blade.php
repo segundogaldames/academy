@@ -1,5 +1,6 @@
 <x-app-layout>
-    <section class="bg-cover" style="background-image:url({{ asset('img/home/imagen2.jpg') }})">
+    <section class="bg-[length:100%_100%] bg-no-repeat w-full h-auto"
+        style="background-image:url({{ asset('img/home/imagen2.jpg') }})">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">
             <div class="w-full md_w-3/4 lg:w-1/2">
                 <h1 class="text-white fomt-bold text-4xl">Domina la tecnología con Mi Academy</h1>

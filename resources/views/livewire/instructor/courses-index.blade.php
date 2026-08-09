@@ -101,7 +101,7 @@
                                     </div>
                                 </td>
                                 <td class="p-3">
-                                    <button
+                                    <a href="{{ route('instructor.courses.edit', $course) }}"
                                         class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[38px] min-h-[38px] rounded-md bg-transparent border-transparent text-stone-800 hover:bg-stone-200/10 hover:border-stone-600/10 shadow-none hover:shadow-none outline-none group"><svg
                                             width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5"
                                             fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"
@@ -111,7 +111,7 @@
                                                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                             </path>
                                         </svg>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
 
-class AdminUsers extends Component
+class UsersIndex extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -20,7 +20,7 @@ class AdminUsers extends Component
     public function render()
     {
         $users = User::where('name', 'LIKE', '%' . $this->search . '%')->orWhere('email', 'LIKE', '%' . $this->search . '%')->paginate(8);
-        return view('livewire.admin-users', compact('users'));
+        return view('livewire.admin.users-index', compact('users'));
     }
 
     public function reset_page()

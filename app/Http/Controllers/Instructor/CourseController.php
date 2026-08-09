@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Course;
+use App\Models\Category;
+use App\Models\Level;
+use App\Models\Price;
 
 class CourseController extends Controller
 {
@@ -46,7 +49,11 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('instructor.courses.edit', compact('course'));
+        $categories = Category::select('id', 'name')->orderBy('name')->get();
+        $levels = Level::select('id', 'name')->orderBy('name')->get();
+        $prices = Price::select('id', 'name', 'price')->get();
+
+        return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'prices'));
     }
 
     /**
