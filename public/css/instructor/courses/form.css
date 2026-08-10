@@ -1,0 +1,13 @@
+.ck-editor__editable_inline {
+    min-height: 250px !important;
+}
+
+.ck-content ul {
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
+}
+
+.ck-content ol {
+    list-style-type: decimal !important;
+    padding-left: 1.5rem !important;
+}
