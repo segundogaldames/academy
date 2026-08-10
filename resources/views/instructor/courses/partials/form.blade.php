@@ -103,5 +103,8 @@
             ratione et, necessitatibus consectetur, doloribus deleniti blanditiis.</p>
         <input type="file" name="file" id="file"
             class="w-full aria-disabled:cursor-not-allowed outline-none focus:outline-none text-stone-800 dark:text-white placeholder:text-stone-600/60 ring-transparent border border-stone-200 transition-all ease-in disabled:opacity-50 disabled:pointer-events-none select-none text-sm py-2 px-2.5 ring shadow-sm bg-white rounded-lg duration-100 hover:border-stone-300 hover:ring-none focus:border-stone-400 focus:ring-none peer">
+        @error('file')
+            <span class="text-xs text-red-600"> {{ $message }} </span>
+        @enderror
     </div>
 </div>

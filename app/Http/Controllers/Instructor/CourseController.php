@@ -47,7 +47,7 @@ class CourseController extends Controller
             'category' => 'required|numeric',
             'level' => 'required|numeric',
             'price' => 'required|numeric',
-            'file' => 'nullable'
+            'file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
         ]);
 
         $course = Course::create([
@@ -70,7 +70,7 @@ class CourseController extends Controller
 
         // 2. Guardar usando el método store() del propio archivo (La forma más segura)
         // Esto guardará en: storage/app/public/courses/prueba/
-        $path = $request->file('file')->store('courses/', 'public');
+        $path = $request->file('file')->store('courses', 'public');
 
         // 3. Retornará la ruta guardada, por ejemplo: "courses/prueba/a1b2c3d4.jpg"
         $course->image()->create(
