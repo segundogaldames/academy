@@ -14,6 +14,12 @@
         </aside>
         <div class="col-span-4 bg-white shadow-lg rounded overflow-hidden">
             <div class="px-6 py-4 text-gray-600">
+                @if (session('success'))
+                    <div role="alert"
+                        class="relative flex items-start w-full border rounded-md p-2 mb-6 bg-green-500 border-green-500 text-green-50">
+                        <div class="w-full text-sm font-sans leading-none m-1.5"> {{ session('success') }} </div>
+                    </div>
+                @endif
                 <h1 class="uppercase font-bold text-2xl border-b-2 pb-2 border-gray-400">Detalle del Curso</h1>
                 <form action="{{ route('instructor.courses.update', $course) }}" method="post"
                     enctype="multipart/form-data" autocomplete="off">

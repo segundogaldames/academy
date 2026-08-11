@@ -64,22 +64,22 @@ class CourseController extends Controller
 
 
 
-        if (!$request->hasFile('file')) {
-            return 'No se ha adjuntado ningún archivo.';
+        if ($request->hasFile('file')) {
+
+            $path = $request->file('file')->store('courses', 'public');
+
+            // 3. Retornará la ruta guardada, por ejemplo: "courses/prueba/a1b2c3d4.jpg"
+            $course->image()->create(
+                [
+                    'url' => $path
+                ]
+            );
         }
 
         // 2. Guardar usando el método store() del propio archivo (La forma más segura)
         // Esto guardará en: storage/app/public/courses/prueba/
-        $path = $request->file('file')->store('courses', 'public');
 
-        // 3. Retornará la ruta guardada, por ejemplo: "courses/prueba/a1b2c3d4.jpg"
-        $course->image()->create(
-            [
-                'url' => $path
-            ]
-        );
-
-        return redirect()->route('instructor.courses.edit', $course);
+        return redirect()->route('instructor.courses.edit', $course)->with('success', 'El curso se ha creado correctamente');
     }
 
     /**
@@ -107,7 +107,54 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:10|max:255|unique:courses,title,' . $course->id,
+            'subtitle' => 'required|min:10|max:255',
+            'slug' => 'required',
+            'description' => 'required|min:10|max:255',
+            'category' => 'required|numeric',
+            'level' => 'required|numeric',
+            'price' => 'required|numeric',
+            'file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+        ]);
+
+        $course->update([
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'description' => $request->description,
+            'status' => 1,
+            'slug' => $request->slug,
+            'category_id' => $request->category,
+            'level_id' => $request->level,
+            'price_id' => $request->price,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->store('courses', 'public');
+
+            if ($course->image) {
+                Storage::disk('public')->delete($course->image->url);
+                $course->image()->update(
+                    [
+                        'url' => $path
+                    ]
+                );
+            } else {
+                $course->image()->create(
+                    [
+                        'url' => $path
+                    ]
+                );
+            }
+        }
+
+        // 2. Guardar usando el método store() del propio archivo (La forma más segura)
+        // Esto guardará en: storage/app/public/courses/prueba/
+
+        // 3. Retornará la ruta guardada, por ejemplo: "courses/prueba/a1b2c3d4.jpg"
+
+        return redirect()->route('instructor.courses.edit', $course)->with('success', 'El curso se ha modificado correctamente');
     }
 
     /**
