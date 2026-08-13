@@ -75,4 +75,10 @@ class CoursesCurriculum extends Component
         $section->delete();
         $this->course->refresh();
     }
+
+    public function cancel()
+    {
+        $this->section = new Section();
+        $this->name = '';
+    }
 }

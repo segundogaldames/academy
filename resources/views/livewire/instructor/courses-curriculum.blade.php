@@ -20,7 +20,7 @@
                         <input
                             class="w-full aria-disabled:cursor-not-allowed outline-none focus:outline-none text-stone-800 dark:text-white placeholder:text-stone-600/60 ring-transparent transition-all ease-in disabled:opacity-50 disabled:pointer-events-none select-none text-sm py-2 px-2.5 ring shadow-sm bg-white rounded-lg duration-100 hover:ring-none focus:ring-none peer border"
                             type="text" wire:model.live="name" wire:keydown.enter.prevent="update"
-                            placeholder="Ingrese el nombre de la sección">
+                            wire:keydown.escape="cancel" placeholder="Ingrese el nombre de la sección">
 
                         @error('name')
                             <span class="text-xs text-red-500">{{ $message }}</span>
