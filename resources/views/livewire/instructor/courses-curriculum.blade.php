@@ -17,7 +17,7 @@
                 @if ($section->id == $item->id)
                     {{-- Formulario de edición --}}
                     <form wire:submit.prevent="update">
-                        <input
+                        <input id=""
                             class="w-full aria-disabled:cursor-not-allowed outline-none focus:outline-none text-stone-800 dark:text-white placeholder:text-stone-600/60 ring-transparent transition-all ease-in disabled:opacity-50 disabled:pointer-events-none select-none text-sm py-2 px-2.5 ring shadow-sm bg-white rounded-lg duration-100 hover:ring-none focus:ring-none peer border"
                             type="text" wire:model.live="name" wire:keydown.enter.prevent="update"
                             wire:keydown.escape="cancel" placeholder="Ingrese el nombre de la sección">
@@ -57,7 +57,7 @@
             <div class="px-6 py-4 bg-gray-100">
                 <h1 class="text-xl font-bold">Nueva Sección</h1>
                 <div>
-                    <input
+                    <input id=""
                         class="w-full aria-disabled:cursor-not-allowed outline-none focus:outline-none text-stone-800 dark:text-white placeholder:text-stone-600/60 ring-transparent transition-all ease-in disabled:opacity-50 disabled:pointer-events-none select-none text-sm py-2 px-2.5 ring shadow-sm bg-white rounded-lg duration-100 hover:ring-none focus:ring-none peer border"
                         type="text" placeholder="Escriba el nombre de la sección" wire:model.live="name">
                     @error('name')
