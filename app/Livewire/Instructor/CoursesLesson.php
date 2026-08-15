@@ -11,11 +11,11 @@ class CoursesLesson extends Component
 {
     public $section;
     public $platforms;
-    public Lesson $lesson;
+    public ?Lesson $lesson = null;
 
     public $name = '';
     public $url = '';
-    public $platform_id = '';
+    public $platform_id = 1;
 
     public function mount(Section $section)
     {
@@ -50,20 +50,26 @@ class CoursesLesson extends Component
         ];
     }
 
-    public function updatedName($value)
+    public function store()
     {
-        $this->section->name = $value;
+        $this->platform_id = $this->platform_id ?: 1;
+        $this->validate();
+
+        Lesson::create([
+            'name' => $this->name,
+            'url' => $this->url,
+            'platform_id' => $this->platform_id,
+            'section_id' => $this->section->id
+        ]);
+
+        $this->reset('name', 'url', 'platform_id');
+        $this->section->refresh();
+        $this->resetForm();
     }
-
-    public function updatedUrl($value)
-    {
-        $this->section->url = $value;
-    }
-
-
 
     public function edit(Lesson $lesson)
     {
+        $this->resetValidation();
         $this->lesson = $lesson;
         $this->name = $lesson->name;
         $this->url = $lesson->url;
@@ -74,12 +80,11 @@ class CoursesLesson extends Component
     {
         $this->validate();
 
-        $this->lesson->name = $this->name;
-        $this->lesson->url = $this->url;
-        $this->lesson->platform_id = $this->platform_id;
-        $this->lesson->section_id = $this->section->id;
-
-        $this->lesson->save();
+        $this->lesson->update([
+            'name'        => $this->name,
+            'url'         => $this->url,
+            'platform_id' => $this->platform_id,
+        ]);
 
         $this->section->refresh();
 
@@ -96,12 +101,19 @@ class CoursesLesson extends Component
         $this->lesson = new Lesson();
         $this->name = '';
         $this->url = '';
-        $this->platform_id = '';
+        $this->platform_id = 1;
         $this->resetErrorBag();
     }
 
     public function cancel()
     {
-        $this->section = new Section();
+        $this->resetForm();
+        $this->section = $this->section->fresh();
+    }
+
+    public function destroy(Lesson $lesson)
+    {
+        $lesson->delete();
+        $this->section->refresh();
     }
 }
