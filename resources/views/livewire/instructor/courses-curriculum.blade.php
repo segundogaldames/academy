@@ -11,7 +11,8 @@
     <h1 class="uppercase font-bold text-2xl border-b-2 pb-2 border-gray-400">Lecciones del Curso</h1>
 
     @foreach ($course->sections as $item)
-        <article class="bg-white shadow-lg rounded overflow-hidden mb-6 mt-4" wire:key="section-{{ $item->id }}">
+        <article class="bg-white shadow-lg rounded overflow-hidden mb-6 mt-4" wire:key="section-{{ $item->id }}"
+            x-data="{ open: true }">
             <div class="px-6 py-4 bg-gray-100">
 
                 @if ($section->id == $item->id)
@@ -29,7 +30,7 @@
                 @else
                     {{-- Encabezado normal --}}
                     <header class="flex justify-between items-center">
-                        <h1 class="cursor-pointer">
+                        <h1 class="cursor-pointer" x-on:click="open = !open">
                             <strong>Sección:</strong> {{ $item->name }}
                         </h1>
                         <div>
@@ -40,7 +41,7 @@
                         </div>
 
                     </header>
-                    <div>
+                    <div x-show="open">
                         @livewire('instructor.courses-lesson', ['section' => $item], key($item->id))
                     </div>
                 @endif

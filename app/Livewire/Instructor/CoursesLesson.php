@@ -89,10 +89,8 @@ class CoursesLesson extends Component
         $this->section->refresh();
 
         // Reseteamos las propiedades
-        $this->lesson = new Lesson();
-        $this->name = '';
-        $this->url = '';
-        $this->platform_id = '';
+        $this->reset(['name', 'url', 'platform_id']);
+
         $this->resetForm();
     }
 
