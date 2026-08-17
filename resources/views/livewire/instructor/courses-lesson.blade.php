@@ -65,10 +65,10 @@
                                 class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-red-500 hover:bg-error-light relative bg-gradient-to-b from-red-500 to-red-600 border-red-600 text-stone-50 rounded-lg hover:bg-gradient-to-b hover:from-red-600 hover:to-red-600 hover:border-red-600 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.35),inset_0_-2px_0px_rgba(0,0,0,0.18)] after:pointer-events-none transition antialiased">Eliminar</button>
                         </div>
                         <div class="mb-4">
-                            @livewire('instructor.lesson-description', ['lesson' => $item], key($item->id))
+                            @livewire('instructor.lesson-description', ['lesson' => $item], key('lesson-description-' . $item->id))
                         </div>
                         <div>
-                            @livewire('instructor.lesson-resources', ['lesson' => $item], key($item->id))
+                            @livewire('instructor.lesson-resources', ['lesson' => $item], key('lesson-resources-' . $item->id))
                         </div>
                     </div>
                 @endif
