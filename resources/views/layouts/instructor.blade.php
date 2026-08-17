@@ -44,7 +44,10 @@
                         class="leading-7 mb-1 border-l-4 {{ request()->routeIs('instructor.courses.goals') ? 'border-indigo-400' : 'border-transparent' }} pl-2">
                         <a href="{{ route('instructor.courses.goals', $course) }}">Metas</a>
                     </li>
-                    <li class="leading-7 mb-1 border-l-4 border-transparent pl-2"><a href="">Estudiantes</a></li>
+                    <li
+                        class="leading-7 mb-1 border-l-4 {{ request()->routeIs('instructor.courses.students') ? 'border-indigo-400' : 'border-transparent' }} pl-2">
+                        <a href="{{ route('instructor.courses.students', $course) }}">Estudiantes</a>
+                    </li>
                 </ul>
             </aside>
             <div class="col-span-4 bg-white shadow-lg rounded overflow-hidden">

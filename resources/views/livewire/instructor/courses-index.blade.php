@@ -1,8 +1,8 @@
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <x-table-responsive>
-            @if ($courses->count())
+        @if ($courses->count())
+            <x-table-responsive>
                 <table class="w-full">
                     <thead
                         class="border-b border-stone-200 bg-stone-100 text-sm font-medium text-stone-600 dark:bg-surface-dark">
@@ -15,7 +15,7 @@
                         </tr>
                     </thead>
                     <tbody class="group text-sm text-stone-800 dark:text-white">
-                        @forelse ($courses as $course)
+                        @foreach ($courses as $course)
                             <tr class="border-b border-stone-200 last:border-0">
                                 <td class="p-3">
                                     <div class="flex items-center gap-3">
@@ -29,19 +29,20 @@
                                                 {{ $course->title }}
                                             </small>
                                             <small class="font-sans antialiased text-sm text-current opacity-70">
-                                                {{ $course->category->name }} </small>
+                                                {{ $course->category->name }}
+                                            </small>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="p-3">
                                     <div class="flex flex-col">
                                         <small class="font-sans antialiased text-sm text-current">
-                                            {{ $course->students->count() }} </small>
+                                            {{ $course->students->count() }}
+                                        </small>
                                         <small
                                             class="font-sans antialiased text-sm text-current opacity-70">Estudiantes</small>
                                     </div>
                                 </td>
-
                                 <td class="p-3">
                                     <div class="flex flex-col">
                                         <div class="font-sans antialiased text-sm text-current flex gap-1">
@@ -94,16 +95,13 @@
                                                         class="font-sans text-current leading-none my-0.5 mx-1.5">Publicado</span>
                                                 </div>
                                             @break
-
-                                            @default
                                         @endswitch
-
                                     </div>
                                 </td>
                                 <td class="p-3">
                                     <a href="{{ route('instructor.courses.edit', $course) }}"
-                                        class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[38px] min-h-[38px] rounded-md bg-transparent border-transparent text-stone-800 hover:bg-stone-200/10 hover:border-stone-600/10 shadow-none hover:shadow-none outline-none group"><svg
-                                            width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5"
+                                        class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 text-sm min-w-[38px] min-h-[38px] rounded-md bg-transparent border-transparent text-stone-800 hover:bg-stone-200/10 hover:border-stone-600/10 shadow-none outline-none group">
+                                        <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5"
                                             fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"
                                             class="h-4 w-4 text-stone-800 dark:text-white">
                                             <path
@@ -114,22 +112,17 @@
                                     </a>
                                 </td>
                             </tr>
-
-                            @empty
-                                <p class="text-blue-700 text-md mt-6 ml-6">No hay cursos creados</p>
-                            @endforelse
-
-                        </tbody>
-                    </table>
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-                        {{ $courses->links() }}
-                    </div>
-                @else
-                    <p class="text-blue-700 text-md mt-6 ml-6">Curso no encontrado</p>
-                @endif
-
+                        @endforeach
+                    </tbody>
+                </table>
             </x-table-responsive>
 
+            <div class="mt-4">
+                {{ $courses->links() }}
+            </div>
+        @else
+            <p class="text-blue-700 text-md mt-6 ml-6">No hay cursos creados</p>
+        @endif
 
-        </div>
     </div>
+</div>
