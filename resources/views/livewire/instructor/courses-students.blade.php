@@ -10,7 +10,7 @@
     @endif
     <h1 class="font-bold text-xl border-b-2 pb-2 border-gray-400 uppercase">Estudiantes del Curso</h1>
     @if ($students->count())
-        <x-table-responsive>
+        <x-table-responsive-students>
             <table class="w-full">
                 <thead
                     class="border-b border-stone-200 bg-stone-100 text-sm font-medium text-stone-600 dark:bg-surface-dark">
@@ -59,7 +59,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </x-table-responsive>
+        </x-table-responsive-students>
 
         <div class="mt-4">
             {{ $students->links() }}

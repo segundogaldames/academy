@@ -22,10 +22,11 @@ class CoursePolicy
 
     public function published(?User $user, Course $course)
     {
-        if ($course->status == 3) {
-            return true;
-        }else{
-            return false;
-        }
+        return $course->status == 3;
+    }
+
+    public function dictated(User $user, Course $course)
+    {
+        return $course->user_id === $user->id;
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Section;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Gate;
 
 class CoursesCurriculum extends Component
 {
@@ -17,6 +18,7 @@ class CoursesCurriculum extends Component
     {
         $this->course = $course;
         $this->section = new Section();
+        Gate::authorize('dictated', $course);
     }
 
     #[Layout('layouts.instructor')]
