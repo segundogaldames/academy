@@ -1,3 +1,4 @@
+@props(['course'])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -49,6 +50,36 @@
                         <a href="{{ route('instructor.courses.students', $course) }}">Estudiantes</a>
                     </li>
                 </ul>
+                @switch($course->status)
+                    @case(1)
+                        <form action="{{ route('instructor.courses.status', $course) }}" method="post">
+                            @csrf
+                            <button type="submit"
+                                class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-orange-500 hover:bg-info-light relative bg-gradient-to-b from-orange-500 to-orange-600 border-orange-600 text-stone-50 rounded-lg hover:bg-gradient-to-b hover:from-orange-600 hover:to-orange-600 hover:border-orange-600 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.35),inset_0_-2px_0px_rgba(0,0,0,0.18)] after:pointer-events-none transition antialiased">Solicitar
+                                Revisión</button>
+                        </form>
+                    @break
+
+                    @case(2)
+                        <div class="bg-white shadow-lg rounded overflow-hidden text-blue-500">
+                            <div class="px-6 py-4">
+                                Este curso se encuentra en revision
+
+                            </div>
+                        </div>
+                    @break
+
+                    @case(3)
+                        <div class="bg-white shadow-lg rounded overflow-hidden text-green-500">
+                            <div class="px-6 py-4">
+                                Este curso se encuentra publicado
+
+                            </div>
+                        </div>
+                    @break
+
+                    @default
+                @endswitch
             </aside>
             <div class="col-span-4 bg-white shadow-lg rounded overflow-hidden">
                 <div class="px-6 py-4 text-gray-600">

@@ -1,7 +1,5 @@
-<x-instructor-layout>
-    <x-slot name="course">
-        {{ $course->slug }}
-    </x-slot>
+<x-instructor-layout :course="$course">
+
     {{-- CSS de CKEditor --}}
     <link rel="stylesheet" href="{{ asset('css/instructor/courses/form.css') }}">
 

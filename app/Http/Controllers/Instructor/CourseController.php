@@ -197,4 +197,11 @@ class CourseController extends Controller implements HasMiddleware
         Gate::authorize('dictated', $course);
         return view('instructor.courses.goals', compact('course'));
     }
+
+    public function status(Course $course)
+    {
+        $course->status = 2;
+        $course->save();
+        return back();
+    }
 }

@@ -1,7 +1,5 @@
 <div>
-    <x-slot name="course">
-        {{ $course->slug }}
-    </x-slot>
+
     @if (session('success'))
         <div role="alert"
             class="relative flex items-start w-full border rounded-md p-2 mb-6 bg-green-500 border-green-500 text-green-50">
