@@ -8,6 +8,9 @@
 
 @section('content')
 
+    @if (session('info'))
+        <div class="alert alert-success"> {{ session('info') }} </div>
+    @endif
     <div class="card">
         <div class="card-header">
             <h1>Lista de cursos por aprobar</h1>
@@ -29,13 +32,13 @@
                             <td> {{ $course->title }} </td>
                             <td> {{ $course->category->name }} </td>
                             <td>
-                                <a href="#" class="btn btn-secondary">
+                                <a href="{{ route('admin.courses.show', $course) }}" class="btn btn-secondary">
                                     <i class="fas fa-pencil"></i>Revisar</a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-info">No hay roles registrados</td>
+                            <td colspan="4" class="text-info">No hay cursos registrados</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -29,4 +29,9 @@ class CoursePolicy
     {
         return $course->user_id === $user->id;
     }
+
+    public function revision(User $user, Course $course)
+    {
+        return $course->status == 2;
+    }
 }
