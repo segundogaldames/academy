@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 
 use App\Models\Course;
 
-class ApprovedCourse extends Mailable implements ShouldQueue
+class RejectCourse extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -32,7 +32,7 @@ class ApprovedCourse extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Curso Aprobado',
+            subject: 'Curso Rechazado',
         );
     }
 
@@ -42,7 +42,7 @@ class ApprovedCourse extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'mail.approved-course',
+            view: 'mail.reject-course',
         );
     }
 

@@ -15,13 +15,12 @@ class Course extends Model
     const PUBLICADO = 3;
 
     protected $guarded = ['id', 'status'];
-    protected $withCount = ['students','reviews'];
+    protected $withCount = ['students', 'reviews'];
 
     public function getRatingAttribute()
     {
-        if($this->reviews_count){
-            return round($this->reviews->avg('rating'),1);
-
+        if ($this->reviews_count) {
+            return round($this->reviews->avg('rating'), 1);
         }
 
         return 5;
@@ -33,16 +32,23 @@ class Course extends Model
     }
 
     #query scopes
-    public function scopeCategory($query, $category_id){
+    public function scopeCategory($query, $category_id)
+    {
         if ($category_id) {
             return $query->where('category_id', $category_id);
         }
     }
 
-    public function scopeLevel($query, $level_id){
+    public function scopeLevel($query, $level_id)
+    {
         if ($level_id) {
             return $query->where('level_id', $level_id);
         }
+    }
+
+    public function observation()
+    {
+        return $this->hasOne(Observation::class);
     }
 
     public function category()

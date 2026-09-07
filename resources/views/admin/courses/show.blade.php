@@ -112,6 +112,12 @@
                             class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700 w-full mt-4">Aprobar
                             Curso</button>
                     </form>
+
+                    <a href="{{ route('admin.courses.observation', $course) }}"
+                        class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-amber-500 hover:bg-warning-light relative bg-gradient-to-b from-orange-500 to-orange-600 border-orange-600 text-stone-50 rounded-lg hover:bg-gradient-to-b hover:from-orange-600 hover:to-orange-600 hover:border-orange-600 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.35),inset_0_-2px_0px_rgba(0,0,0,0.18)] after:pointer-events-none transition antialiase w-full ml-2">
+                        Realizar Observaciones
+                    </a>
+
                 </div>
             </section>
 

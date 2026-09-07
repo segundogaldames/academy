@@ -204,4 +204,10 @@ class CourseController extends Controller implements HasMiddleware
         $course->save();
         return back();
     }
+
+    public function observations(Course $course)
+    {
+        Gate::authorize('dictated', $course);
+        return view('instructor.courses.observations', compact('course'));
+    }
 }

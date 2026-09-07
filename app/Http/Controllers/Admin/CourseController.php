@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ApprovedCourse;
+use App\Mail\RejectCourse;
 
 class CourseController extends Controller
 {
@@ -38,5 +39,33 @@ class CourseController extends Controller
         Mail::to($course->teacher->email)->send($mail);
 
         return redirect()->route('admin.courses.index')->with('info', 'El curso se ha aprobado satisfactoriamente');
+    }
+
+    public function observation(Course $course)
+    {
+        Gate::authorize('revision', $course);
+        return view('admin.courses.observation', compact('course'));
+    }
+
+    public function reject(Request $request, Course $course)
+    {
+        $request->validate([
+            'body' => 'required',
+        ]);
+
+        $course->observation()->updateOrCreate(
+            [],
+            [
+                'body' => $request->body,
+            ]
+        );
+
+        $course->status = 1;
+        $course->save();
+
+        $mail = new RejectCourse($course);
+        Mail::to($course->teacher->email)->send($mail);
+
+        return redirect()->route('admin.courses.index')->with('info', 'El curso se ha rechazado satisfactoriamente');
     }
 }

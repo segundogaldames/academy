@@ -49,6 +49,12 @@
                         class="leading-7 mb-1 border-l-4 {{ request()->routeIs('instructor.courses.students') ? 'border-indigo-400' : 'border-transparent' }} pl-2">
                         <a href="{{ route('instructor.courses.students', $course) }}">Estudiantes</a>
                     </li>
+                    @if ($course->observation)
+                        <li
+                            class="leading-7 mb-1 border-l-4 {{ request()->routeIs('instructor.courses.observations') ? 'border-indigo-400' : 'border-transparent' }} pl-2">
+                            <a href="{{ route('instructor.courses.observations', $course) }}">Observaciones</a>
+                        </li>
+                    @endif
                 </ul>
                 @switch($course->status)
                     @case(1)
