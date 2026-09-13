@@ -7,6 +7,7 @@ Route::get('', [App\Http\Controllers\Admin\HomeController::class, 'index'])->mid
 Route::resource('roles', App\Http\Controllers\Admin\RoleController::class)->names('roles');
 Route::resource('users', App\Http\Controllers\Admin\UserController::class)->only('index', 'edit', 'update')->names('users');
 Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class)->names('categories');
+Route::resource('levels', App\Http\Controllers\Admin\LevelController::class)->names('levels');
 
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
