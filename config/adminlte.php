@@ -342,6 +342,11 @@ return [
         ],
         ['header' => 'Opciones de Cursos'],
         [
+            'text' => 'Categorías',
+            'route' => 'admin.categories.index',
+            'icon' => 'fas fa-fw fa-cogs',
+        ],
+        [
             'text' => 'Pendientes',
             'route' => 'admin.courses.index',
             'icon' => 'fas fa-fw fa-user',
