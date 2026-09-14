@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Review;
 
 class CoursePolicy
 {
@@ -33,5 +34,10 @@ class CoursePolicy
     public function revision(User $user, Course $course)
     {
         return $course->status == 2;
+    }
+
+    public function valued(User $user, Course $course)
+    {
+        return Review::where('user_id', $user->id)->where('course_id', $course->id)->doesntExist();
     }
 }

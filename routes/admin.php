@@ -8,6 +8,7 @@ Route::resource('roles', App\Http\Controllers\Admin\RoleController::class)->name
 Route::resource('users', App\Http\Controllers\Admin\UserController::class)->only('index', 'edit', 'update')->names('users');
 Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class)->names('categories');
 Route::resource('levels', App\Http\Controllers\Admin\LevelController::class)->names('levels');
+Route::resource('prices', App\Http\Controllers\Admin\PriceController::class)->names('prices');
 
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');

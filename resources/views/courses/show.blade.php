@@ -68,6 +68,7 @@
                     {!! $course->description !!}
                 </div>
             </section>
+            @livewire('courses-reviews', ['course' => $course])
         </div>
         <div class="order 1 md:order-2">
             <section class="bg-white shadow-lg rounded overflow-hidden mb-4">
